@@ -237,8 +237,7 @@
             // TimeToolStripStatusLabel
             // 
             this.TimeToolStripStatusLabel.Name = "TimeToolStripStatusLabel";
-            this.TimeToolStripStatusLabel.Size = new System.Drawing.Size(118, 17);
-            this.TimeToolStripStatusLabel.Text = "toolStripStatusLabel3";
+            this.TimeToolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             this.TimeToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             // 
             // Form1
