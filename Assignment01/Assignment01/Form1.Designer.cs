@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,7 +47,12 @@
             this.VehiclesButton = new System.Windows.Forms.Button();
             this.CustomersButton = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.DateToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.TimeToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -60,7 +66,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(528, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(622, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "File";
             // 
@@ -92,21 +98,21 @@
             // customersToolStripMenuItem
             // 
             this.customersToolStripMenuItem.Name = "customersToolStripMenuItem";
-            this.customersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.customersToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.customersToolStripMenuItem.Text = "&Customers";
             this.customersToolStripMenuItem.Click += new System.EventHandler(this.customersToolStripMenuItem_Click);
             // 
             // vehiclesToolStripMenuItem
             // 
             this.vehiclesToolStripMenuItem.Name = "vehiclesToolStripMenuItem";
-            this.vehiclesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.vehiclesToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.vehiclesToolStripMenuItem.Text = "&Vehicles";
             this.vehiclesToolStripMenuItem.Click += new System.EventHandler(this.vehiclesToolStripMenuItem_Click);
             // 
             // rentalsToolStripMenuItem
             // 
             this.rentalsToolStripMenuItem.Name = "rentalsToolStripMenuItem";
-            this.rentalsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rentalsToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.rentalsToolStripMenuItem.Text = "&Rentals";
             this.rentalsToolStripMenuItem.Click += new System.EventHandler(this.rentalsToolStripMenuItem_Click);
             // 
@@ -161,14 +167,14 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(528, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(622, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // RentalsButton
             // 
             this.RentalsButton.Image = global::Assignment01.Properties.Resources.keys;
-            this.RentalsButton.Location = new System.Drawing.Point(58, 24);
+            this.RentalsButton.Location = new System.Drawing.Point(58, 26);
             this.RentalsButton.Margin = new System.Windows.Forms.Padding(2);
             this.RentalsButton.Name = "RentalsButton";
             this.RentalsButton.Size = new System.Drawing.Size(27, 19);
@@ -200,17 +206,46 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 226);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.DateToolStripStatusLabel,
+            this.TimeToolStripStatusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 488);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(528, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(622, 22);
             this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(458, 17);
+            this.toolStripStatusLabel1.Spring = true;
+            this.toolStripStatusLabel1.Text = "We\'re #1 In Car Rentals!";
+            this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // DateToolStripStatusLabel
+            // 
+            this.DateToolStripStatusLabel.Name = "DateToolStripStatusLabel";
+            this.DateToolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
+            // 
+            // TimeToolStripStatusLabel
+            // 
+            this.TimeToolStripStatusLabel.Name = "TimeToolStripStatusLabel";
+            this.TimeToolStripStatusLabel.Size = new System.Drawing.Size(118, 17);
+            this.TimeToolStripStatusLabel.Text = "toolStripStatusLabel3";
+            this.TimeToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 248);
+            this.ClientSize = new System.Drawing.Size(622, 510);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.RentalsButton);
             this.Controls.Add(this.VehiclesButton);
@@ -222,8 +257,11 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Cartwright\'s Car Rentals";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,6 +287,10 @@
         private System.Windows.Forms.Button VehiclesButton;
         private System.Windows.Forms.Button RentalsButton;
         private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStripStatusLabel DateToolStripStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel TimeToolStripStatusLabel;
     }
 }
 

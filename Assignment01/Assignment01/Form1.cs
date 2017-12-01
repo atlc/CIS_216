@@ -133,8 +133,7 @@ namespace Assignment01
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutBox1 aboutBox = new AboutBox1();
-            aboutBox.MdiParent = this;
-            aboutBox.Show();
+            aboutBox.ShowDialog();
             aboutBox.Focus();
         }
 
@@ -166,6 +165,18 @@ namespace Assignment01
         private void RentalsButton_Click(object sender, EventArgs e)
         {
             rentalsToolStripMenuItem_Click(sender, e);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            DateToolStripStatusLabel.Text = DateTime.Today.ToShortDateString();
+            TimeToolStripStatusLabel.Text = DateTime.Now.ToLongTimeString();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            DateToolStripStatusLabel.Text = DateTime.Today.ToShortDateString();
+            TimeToolStripStatusLabel.Text = DateTime.Now.ToLongTimeString();
         }
     }
 }
