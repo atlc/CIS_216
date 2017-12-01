@@ -174,6 +174,7 @@
             this.RentalsButton.Size = new System.Drawing.Size(27, 19);
             this.RentalsButton.TabIndex = 6;
             this.RentalsButton.UseVisualStyleBackColor = true;
+            this.RentalsButton.Click += new System.EventHandler(this.RentalsButton_Click);
             // 
             // VehiclesButton
             // 
@@ -184,6 +185,7 @@
             this.VehiclesButton.Size = new System.Drawing.Size(27, 15);
             this.VehiclesButton.TabIndex = 5;
             this.VehiclesButton.UseVisualStyleBackColor = true;
+            this.VehiclesButton.Click += new System.EventHandler(this.VehiclesButton_Click);
             // 
             // CustomersButton
             // 
