@@ -125,23 +125,54 @@ namespace Assignment01
                                 else if (SizeMidsizeRadioButton.Checked)
                                     CarSizeInt = (int)CarSize.MidSize;
                                 else
-                                    CarSizeInt = (int)CarSize.MidSize;
+                                    CarSizeInt = (int)CarSize.Luxury;
 
-                            } 
+                                // Finally validates that the starting mileage should be lesser than the ending milage
+                                if (OdometerBeginning > OdometerEnding)
+                                {
+                                    ErrorProvider1.SetError(OdometerBeginningTextBox, "The beginning mileage must be lower than the ending mileage.");
+                                    OdometerBeginningTextBox.Focus();
+                                    OdometerBeginningTextBox.SelectAll();
+                                }
+                                else
+                                {
+                                    // TODO:
+                                    // TO DO: Send everything to the business tier
+                                }
+                            }
+                            // Begin the error handling and focusing back to the required controls
+                            else
+                            {
+                                ErrorProvider1.SetError(OdometerEndingTextBox, "Please enter the ending mileage.");
+                                OdometerEndingTextBox.Focus();
+                                OdometerEndingTextBox.SelectAll();
+                            }
+                        }
+                        else
+                        {
+                            ErrorProvider1.SetError(OdometerBeginningTextBox, "Please enter the beginning mileage.");
+                            OdometerBeginningTextBox.Focus();
+                            OdometerBeginningTextBox.SelectAll();
                         }
                     }
+                    else
+                    {
+                        ErrorProvider1.SetError(SizeCompactRadioButton, "Please check one of the car size values.");
+                    }
+                }
+                else
+                {
+                    ErrorProvider1.SetError(DaysRentedTextBox, "Please enter the amount of days the car was rented.");
+                    DaysRentedTextBox.Focus();
+                    DaysRentedTextBox.SelectAll();
                 }
             }
-        }
-
-        private void RunValidationTests(object sender, EventArgs e)
-        {
-            /*
-            BeginOdometereading_Validation(sender, e);
-            DriversLicenseTextBox_Validation(sender, e);
-            CreditCardNumberTextBox_Validator(sender, e);
-            DaysRentedTextBox_Validator(sender, e);
-            */
+            else
+            {
+                ErrorProvider1.SetError(DriversLicenseTextBox, "Please enter your drivers' license number.");
+                DriversLicenseTextBox.Focus();
+                DriversLicenseTextBox.SelectAll();
+            }
         }
     }
 }
