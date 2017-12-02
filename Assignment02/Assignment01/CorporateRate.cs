@@ -6,16 +6,24 @@ using System.Threading.Tasks;
 
 namespace Assignment01
 {
+    public enum Discount : int
+    {
+        Corporate = 1,
+        Insurance
+    }
+
+    // Corporate Rate Class
     class CorporateRate : RentalRate
     {
-        // Corporate Rate Class
+        private int DiscountRateInteger;
+        const Decimal CORPORATE_DISCOUNT_Decimal = 0.05M;
+        const Decimal INSURANCE_DISCOUNT_Decimal = 0.01M;
 
-        //  ***   Define enumeration  ***
-
-        public enum Discount : int
+        public CorporateRate(int BeginnerOdometerInteger, int EndingOdometerInteger, int CarSizeInteger, int DaysInteger, int DiscountInteger)
+            : base (BeginnerOdometerInteger, EndingOdometerInteger, CarSizeInteger, DaysInteger)
         {
-            Corporate = 1,
-            Insurance
+            DiscountRateInteger = DiscountInteger;
+            FindAmountDue();
         }
 
         // overrides base form method FindAmountDue()

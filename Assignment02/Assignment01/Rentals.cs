@@ -21,7 +21,7 @@ namespace Assignment01
             InitializeComponent();
         }
 
-        private void BeginOdometereading_Validation(object sender, CancelEventArgs e)
+        private void OdometerBeginningTextBox_Validating(object sender, CancelEventArgs e)
         {
             Decimal.TryParse(OdometerBeginningTextBox.Text, out NumberDecimal);
 
@@ -34,7 +34,22 @@ namespace Assignment01
             else
                 ErrorProvider1.Clear();
         }
-        private void DriversLicenseTextBox_Validation(object sender, CancelEventArgs e)
+
+        private void OdometerEndingTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            Decimal.TryParse(OdometerEndingTextBox.Text, out NumberDecimal);
+
+            if (NumberDecimal == 0)
+            {
+                ErrorProvider1.SetError(OdometerEndingTextBox, "Entry required!");
+                OdometerEndingTextBox.Focus();
+                e.Cancel = true;
+            }
+            else
+                ErrorProvider1.Clear();
+        }
+
+        private void DriversLicenseTextBox_Validating(object sender, CancelEventArgs e)
         {
             Decimal.TryParse(DriversLicenseTextBox.Text, out NumberDecimal);
 
@@ -48,7 +63,7 @@ namespace Assignment01
                 ErrorProvider1.Clear();
         }
 
-        private void CreditCardNumberTextBox_Validator(object sender, CancelEventArgs e)
+        private void CreditCardNumberTextBox_Validating(object sender, CancelEventArgs e)
         {
             Decimal.TryParse(CreditCardNumberTextBox.Text, out NumberDecimal);
 
@@ -62,7 +77,7 @@ namespace Assignment01
                 ErrorProvider1.Clear();
         }
 
-        private void DaysRentedTextBox_Validator(object sender, CancelEventArgs e)
+        private void DaysRentedTextBox_Validating(object sender, CancelEventArgs e)
         {
             Decimal.TryParse(DaysRentedTextBox.Text, out NumberDecimal);
 
@@ -83,7 +98,40 @@ namespace Assignment01
 
         private void CalculateButton_Click(object sender, EventArgs e)
         {
+            int OdometerBeginning, OdometerEnding, DaysRented, CarSizeInt, Discount = 0;
 
+            // Validate that entries have been made for the DL# & days rented, & that a car size is selected
+            if (DriversLicenseTextBox.Text != "")
+            {
+                if (DaysRentedTextBox.Text != "")
+                {
+                    if (SizeCompactRadioButton.Checked || SizeMidsizeRadioButton.Checked || SizeLuxuryRadioButton.Checked)
+                    {
+                        // Begin seeing if values are parsable
+                        Int32.TryParse(DaysRentedTextBox.Text, out DaysRented);
+                        Int32.TryParse(OdometerBeginningTextBox.Text, out OdometerBeginning);
+
+                        // If there is a positive value in the beginning mileage, parse the ending mileage
+                        if (OdometerBeginning > 0)
+                        {
+                            Int32.TryParse(OdometerEndingTextBox.Text, out OdometerEnding);
+
+                            // If days rented, beginning mileage, and ending mileage are all valid, assign CarSizeInt value
+                            if (OdometerEnding > 0)
+                            {
+                                // Casts carsizeint values to the corresponding values in the enum
+                                if (SizeCompactRadioButton.Checked)
+                                    CarSizeInt = (int)CarSize.Compact;
+                                else if (SizeMidsizeRadioButton.Checked)
+                                    CarSizeInt = (int)CarSize.MidSize;
+                                else
+                                    CarSizeInt = (int)CarSize.MidSize;
+
+                            } 
+                        }
+                    }
+                }
+            }
         }
 
         private void RunValidationTests(object sender, EventArgs e)
