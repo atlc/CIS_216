@@ -127,7 +127,7 @@ namespace Assignment01
                                 else
                                     CarSizeInt = (int)CarSize.Luxury;
 
-                                // Finally validates that the starting mileage should be lesser than the ending milage
+                                // Validates that the starting mileage should be lesser than the ending milage
                                 if (OdometerBeginning > OdometerEnding)
                                 {
                                     ErrorProvider1.SetError(OdometerBeginningTextBox, "The beginning mileage must be lower than the ending mileage.");
@@ -136,8 +136,25 @@ namespace Assignment01
                                 }
                                 else
                                 {
-                                    // TODO:
-                                    // TO DO: Send everything to the business tier
+                                    // Determines which discount - if any - to use in CorporateRate class's Discount enum, then calculates amounts owed
+                                    if (DiscountCorporateRadioButton.Checked)
+                                    {
+                                        Discount = 1;
+                                        CorporateRate corporateTotal = new CorporateRate(OdometerBeginning, OdometerEnding, CarSizeInt, DaysRented, Discount);
+                                        AmountDueTextBox.Text = corporateTotal.getAmountDue().ToString("C");
+                                    }
+                                    else if (DiscountInsuranceAcctRadioButton.Checked)
+                                    {
+                                        Discount = 2;
+                                        CorporateRate insuranceTotal = new CorporateRate(OdometerBeginning, OdometerEnding, CarSizeInt, DaysRented, Discount);
+                                        AmountDueTextBox.Text = insuranceTotal.getAmountDue().ToString("C");
+                                    }
+                                    else
+                                    {
+                                        Discount = 0;
+                                        RentalRate totalCost = new RentalRate(OdometerBeginning, OdometerEnding, CarSizeInt, DaysRented);
+                                        AmountDueTextBox.Text = totalCost.getAmountDue().ToString("C");
+                                    }
                                 }
                             }
                             // Begin the error handling and focusing back to the required controls
