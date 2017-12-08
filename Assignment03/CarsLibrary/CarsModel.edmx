@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CarsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CarSize">
+          <Key>
+            <PropertyRef Name="SizeCode" />
+          </Key>
+          <Property Name="Size" Type="nvarchar" MaxLength="50" />
+          <Property Name="SizeCode" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="DailyRate" Type="float" />
+          <Property Name="MileageRate" Type="float" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Phone" />
+          </Key>
+          <Property Name="LName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Street" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="50" />
+          <Property Name="Inv_ID" Type="nvarchar" MaxLength="5" />
+          <Property Name="Drivers_License" Type="nvarchar" MaxLength="50" />
+          <Property Name="RentalDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Reservations">
+          <Key>
+            <PropertyRef Name="Confirmation_ID" />
+          </Key>
+          <Property Name="Confirmation_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="CarSize" Type="nvarchar" MaxLength="2" />
+          <Property Name="Time" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="Inv_ID" />
+          </Key>
+          <Property Name="Inv_ID" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Manuf_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" />
+          <Property Name="CarSize" Type="nvarchar" MaxLength="2" />
+        </EntityType>
+        <Association Name="Reservations_FK00">
+          <End Role="CarSize" Type="Self.CarSize" Multiplicity="0..1" />
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarSize">
+              <PropertyRef Name="SizeCode" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="CarSize" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Vehicle_FK00">
+          <End Role="CarSize" Type="Self.CarSize" Multiplicity="0..1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarSize">
+              <PropertyRef Name="SizeCode" />
+            </Principal>
+            <Dependent Role="Vehicle">
+              <PropertyRef Name="CarSize" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarsModelStoreContainer">
+          <EntitySet Name="CarSize" EntityType="Self.CarSize" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reservations" EntityType="Self.Reservations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehicle" EntityType="Self.Vehicle" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Reservations_FK00" Association="Self.Reservations_FK00">
+            <End Role="CarSize" EntitySet="CarSize" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="Vehicle_FK00" Association="Self.Vehicle_FK00">
+            <End Role="CarSize" EntitySet="CarSize" />
+            <End Role="Vehicle" EntitySet="Vehicle" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CarsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CarSize">
+          <Key>
+            <PropertyRef Name="SizeCode" />
+          </Key>
+          <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SizeCode" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DailyRate" Type="Double" />
+          <Property Name="MileageRate" Type="Double" />
+          <NavigationProperty Name="Reservations" Relationship="Self.Reservations_FK00" FromRole="CarSize" ToRole="Reservations" />
+          <NavigationProperty Name="Vehicles" Relationship="Self.Vehicle_FK00" FromRole="CarSize" ToRole="Vehicle" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Phone" />
+          </Key>
+          <Property Name="LName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Inv_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Drivers_License" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RentalDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="Confirmation_ID" />
+          </Key>
+          <Property Name="Confirmation_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="CarSize" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CarSize1" Relationship="Self.Reservations_FK00" FromRole="Reservations" ToRole="CarSize" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="Inv_ID" />
+          </Key>
+          <Property Name="Inv_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Manuf_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CarSize" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CarSize1" Relationship="Self.Vehicle_FK00" FromRole="Vehicle" ToRole="CarSize" />
+        </EntityType>
+        <Association Name="Reservations_FK00">
+          <End Role="CarSize" Type="Self.CarSize" Multiplicity="0..1" />
+          <End Role="Reservations" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarSize">
+              <PropertyRef Name="SizeCode" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="CarSize" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Vehicle_FK00">
+          <End Role="CarSize" Type="Self.CarSize" Multiplicity="0..1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarSize">
+              <PropertyRef Name="SizeCode" />
+            </Principal>
+            <Dependent Role="Vehicle">
+              <PropertyRef Name="CarSize" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CarSizes" EntityType="Self.CarSize" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Reservations" EntityType="Self.Reservation" />
+          <EntitySet Name="Vehicles" EntityType="Self.Vehicle" />
+          <AssociationSet Name="Reservations_FK00" Association="Self.Reservations_FK00">
+            <End Role="CarSize" EntitySet="CarSizes" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="Vehicle_FK00" Association="Self.Vehicle_FK00">
+            <End Role="CarSize" EntitySet="CarSizes" />
+            <End Role="Vehicle" EntitySet="Vehicles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CarsModelStoreContainer" CdmEntityContainer="CarsEntities">
+          <EntitySetMapping Name="CarSizes">
+            <EntityTypeMapping TypeName="CarsModel.CarSize">
+              <MappingFragment StoreEntitySet="CarSize">
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="SizeCode" ColumnName="SizeCode" />
+                <ScalarProperty Name="DailyRate" ColumnName="DailyRate" />
+                <ScalarProperty Name="MileageRate" ColumnName="MileageRate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="CarsModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Inv_ID" ColumnName="Inv_ID" />
+                <ScalarProperty Name="Drivers_License" ColumnName="Drivers_License" />
+                <ScalarProperty Name="RentalDate" ColumnName="RentalDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservations">
+            <EntityTypeMapping TypeName="CarsModel.Reservation">
+              <MappingFragment StoreEntitySet="Reservations">
+                <ScalarProperty Name="Confirmation_ID" ColumnName="Confirmation_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CarSize" ColumnName="CarSize" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicles">
+            <EntityTypeMapping TypeName="CarsModel.Vehicle">
+              <MappingFragment StoreEntitySet="Vehicle">
+                <ScalarProperty Name="Inv_ID" ColumnName="Inv_ID" />
+                <ScalarProperty Name="Manuf_Name" ColumnName="Manuf_Name" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="CarSize" ColumnName="CarSize" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
