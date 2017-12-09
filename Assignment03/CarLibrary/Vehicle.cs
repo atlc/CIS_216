@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CarsLibrary
+namespace CarLibrary
 {
     using System;
     using System.Collections.Generic;

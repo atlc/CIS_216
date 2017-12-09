@@ -7,22 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CarsLibrary
+namespace CarLibrary
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer
+    public partial class Reservation
     {
-        public string LName { get; set; }
-        public string FName { get; set; }
+        public string Confirmation_ID { get; set; }
+        public string Name { get; set; }
         public string Phone { get; set; }
-        public string Street { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Zip { get; set; }
-        public string Inv_ID { get; set; }
-        public string Drivers_License { get; set; }
-        public Nullable<System.DateTime> RentalDate { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public string CarSize { get; set; }
+        public string Time { get; set; }
+    
+        public virtual CarSize CarSize1 { get; set; }
     }
 }
