@@ -15,7 +15,7 @@ namespace FlickrViewer
    {
       // Use your Flickr API key here--you can get one at:
       // http://www.flickr.com/services/apps/create/apply
-      private const string KEY = "YOUR API KEY HERE";
+      private const string KEY = "b30227ff47eb8cc60a4fc0b1f2a40516";
 
       // object used to invoke Flickr web service
       private WebClient flickrClient = new WebClient();
@@ -47,11 +47,10 @@ namespace FlickrViewer
                 flickrClient.CancelAsync(); // cancel current search
          } // end if
 
-         // Flickr's web service URL for searches
-         var flickrURL = string.Format( "http://api.flickr.com/services" +
-            "/rest/?method=flickr.photos.search&api_key={0}&tags={1}" +
-            "&tag_mode=all&per_page=500&privacy_filter=1", KEY,
-            inputTextBox.Text.Replace( " ", "," ) );
+            // Flickr's web service URL for searches
+            var flickrURL = "https://api.flickr.com/services/rest/?method=" +
+            $"flickr.photos.search&api_key={KEY}&tags={inputTextBox.Text.Replace(" ", ",")}" +
+            $"&tag_mode=all&per_page=500&privacy_filter=1";
 
          imagesListBox.DataSource = null; // remove prior data source
          imagesListBox.Items.Clear(); // clear imagesListBox
