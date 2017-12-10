@@ -11,6 +11,7 @@ namespace CarsLibrary
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     
     public partial class CarSize
     {
@@ -18,7 +19,8 @@ namespace CarsLibrary
         public CarSize()
         {
             this.Reservations = new HashSet<Reservation>();
-            this.Vehicles = new HashSet<Vehicle>();
+            // this.Vehicles = new HashSet<Vehicle>();
+            this.Vehicles = new ObservableCollection<Vehicle>();
         }
     
         public string Size { get; set; }
@@ -29,6 +31,6 @@ namespace CarsLibrary
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservation> Reservations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Vehicle> Vehicles { get; set; }
+        public virtual ObservableCollection<Vehicle> Vehicles { get; set; }
     }
 }

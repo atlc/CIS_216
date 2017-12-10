@@ -13,9 +13,6 @@ namespace Assignment01
 {
     public partial class Vehicles : Form
     {
-
-        private CarsLibrary.CarsEntities dbcontext = new CarsLibrary.CarsEntities();
-
         public Vehicles()
         {
             InitializeComponent();
@@ -26,10 +23,30 @@ namespace Assignment01
             Close();
         }
 
+        private CarsLibrary.CarsEntities dbcontext = new CarsLibrary.CarsEntities();
+
         private void Vehicles_Load(object sender, EventArgs e)
         {
             dbcontext.Vehicles.Load();
             vehicleBindingSource.DataSource = dbcontext.Vehicles.Local;
+        }
+
+        private void sizeComboBox_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            int index = sizeComboBox.SelectedIndex;
+            switch (index)
+            {
+                case 0:
+                    vehicleBindingSource.DataSource = dbcontext.Vehicles.Local.Where(Vehicles => Vehicles.CarSize1.Size == "Economy");
+                    break;
+                case 1:
+                    vehicleBindingSource.DataSource = dbcontext.Vehicles.Local.Where(Vehicles => Vehicles.CarSize1.Size == "Luxury");
+                    break;
+                case 2:
+                    vehicleBindingSource.DataSource = dbcontext.Vehicles.Local.Where(Vehicles => Vehicles.CarSize1.Size == "Mid-size");
+                    break;
+            }
+            vehicleBindingSource.MoveFirst();
         }
     }
 }
