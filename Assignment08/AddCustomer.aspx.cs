@@ -11,4 +11,16 @@ public partial class AddCustomer : System.Web.UI.Page
     {
 
     }
+
+    protected void ClearButton_Click(object sender, EventArgs e)
+    {
+        LastNameTextBox.Text = "";
+        FirstNameTextBox.Text = "";
+        PhoneNumberTextBox.Text = "";
+        StreetAddressTextBox.Text = "";
+        CityTextBox.Text = "";
+        StateTextBox.Text = "";
+        ZIPCodeTextBox.Text = "";
+        DriversLicenseTextBox.Text = "";
+    }
 }
