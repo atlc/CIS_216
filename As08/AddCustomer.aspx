@@ -9,6 +9,9 @@
         .auto-style1 {
             font-size: x-large;
         }
+        .auto-style2 {
+            margin-left: 200px;
+        }
     </style>
 </head>
 <body>
@@ -29,7 +32,7 @@
             Phone:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="PhoneNumberTextBox" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="PhoneNumberTextBox" ErrorMessage="Error - this field is required." ForeColor="#FF3300"></asp:RequiredFieldValidator>
-            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="This field must be in ###-###-#### format." ForeColor="#FF3300" ValidationExpression="((\d{3} ?)|(\d{3}-))?((\d{3} ?)|(\d{3}-))?\d{4}"></asp:RegularExpressionValidator>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="PhoneNumberTextBox" ErrorMessage="This field must be in ###-###-#### format." ForeColor="#FF3300" ValidationExpression="((\d{3} ?)|(\d{3}-))?((\d{3} ?)|(\d{3}-))?\d{4}"></asp:RegularExpressionValidator>
         </p>
         <p>
             Street:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="StreetAddressTextBox" runat="server"></asp:TextBox>
@@ -49,13 +52,18 @@
             ZIP Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="ZIPCodeTextBox" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="ZIPCodeTextBox" ErrorMessage="Error - this field is required." ForeColor="#FF3300"></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="ZIPCodeTextBox" ErrorMessage="This field must be in #####-#### format." ForeColor="#FF3300" ValidationExpression="\d{5}(-\d{4})?"></asp:RegularExpressionValidator>
         </p>
         <p>
             Driver&#39;s License:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="DriversLicenseTextBox" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="DriversLicenseTextBox" ErrorMessage="Error - this field is required." ForeColor="#FF3300"></asp:RequiredFieldValidator>
-            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="This field must be in #####-#### format." ForeColor="#FF3300" ValidationExpression="\d{5}(-\d{4})?"></asp:RegularExpressionValidator>
         </p>
+        <div class="auto-style2">
+            <asp:Button ID="SubmitButton" runat="server" OnClick="SubmitButton_Click" Text="Submit" />
+&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="ClearButton" runat="server" OnClick="ClearButton_Click" Text="Clear" />
+        </div>
     </form>
 </body>
 </html>
