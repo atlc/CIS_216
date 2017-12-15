@@ -32,9 +32,12 @@
                 <asp:Parameter Name="Inv_ID" Type="String" />
             </UpdateParameters>
         </asp:SqlDataSource>
-        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="CarSize" DataValueField="CarSize">
+        <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged1">
+            <asp:ListItem>Economy</asp:ListItem>
+            <asp:ListItem>Luxury</asp:ListItem>
+            <asp:ListItem>Mid-size</asp:ListItem>
         </asp:DropDownList>
-        <asp:GridView ID="RentalCarsGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="Inv_ID" DataSourceID="SqlDataSource1" EmptyDataText="There are no data records to display.">
+        <asp:GridView ID="RentalCarsGridView" runat="server" AutoGenerateColumns="False" EmptyDataText="There are no data records to display." DataKeyNames="Inv_ID" DataSourceID="SqlDataSource1">
             <AlternatingRowStyle BackColor="#99CCFF" />
             <Columns>
                 <asp:BoundField DataField="Inv_ID" HeaderText="Inv_ID" ReadOnly="True" SortExpression="Inv_ID" />

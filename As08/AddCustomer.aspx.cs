@@ -9,7 +9,6 @@ using System.Data.Entity;
 public partial class AddCustomer : System.Web.UI.Page
 {
     private CarsEntities dbcontext = new CarsEntities();
-    // private CarsEntities.Customer dbcontext = new CarsEntities.Customer();
 
     protected void Page_Load(object sender, EventArgs e)
     {
